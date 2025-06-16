@@ -21,18 +21,36 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  {
+    rel: "icon",
+    href: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>"
+  }
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              function updateTheme() {
+                let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.classList.toggle('dark', isDark);
+              }
+              
+              updateTheme();
+              
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+            `,
+          }}
+        />
       </head>
-      <body>
+      <body className="bg-background text-foreground">
         {children}
         <ScrollRestoration />
         <Scripts />
