@@ -11,6 +11,8 @@ import type { Route } from "./+types/root";
 import "~/app.css";
 
 export const links: Route.LinksFunction = () => [
+  { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
+  { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
