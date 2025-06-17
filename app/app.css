@@ -10,14 +10,26 @@
 
 html {
   @apply bg-background text-foreground;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   @apply bg-inherit text-inherit;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 @theme inline {
