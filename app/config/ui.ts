@@ -1,9 +1,10 @@
 import { z } from "zod";
 import { DrumKitBlockSchema } from "~/components/DrumKit/schema";
-
+import { ProfileCardBlockSchema } from "~/components/ProfileCard/schema";
 
 export const ConfigBlockSchema = z.discriminatedUnion("typename", [
   DrumKitBlockSchema,
+  ProfileCardBlockSchema,
 ]);
 
 export const ConfigSchema = z.array(ConfigBlockSchema);
@@ -47,6 +48,29 @@ export const configData = [
         key: "KeyL",
         icon: "👏",
         sound: "/sounds/clap.wav",
+      },
+    ],
+  },
+  {
+    typename: "ProfileCard",
+    name: "Zac Clark",
+    title: "Senior Software Engineer",
+    avatarSrc: "/memoji.png",
+    socialLinks: [
+      {
+        type: "linkedin",
+        url: "https://www.linkedin.com/in/zrclark/",
+        label: "LinkedIn profile",
+      },
+      {
+        type: "github",
+        url: "https://github.com/zandoh",
+        label: "GitHub profile",
+      },
+      {
+        type: "email",
+        url: "mailto:zclarkmail@gmail.com",
+        label: "Send email",
       },
     ],
   },

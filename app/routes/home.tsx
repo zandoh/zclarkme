@@ -23,9 +23,13 @@ export default function Home() {
   const { config } = useLoaderData<typeof loader>();
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-6 py-16 space-y-16">
-        {config.map((item, idx) => renderBlock(item, {key: idx}))}
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="max-w-2xl mx-auto px-6 space-y-16 w-full">
+        {config.map((item, idx) => (
+          <div key={idx} className="flex justify-center">
+            {renderBlock(item, { key: idx })}
+          </div>
+        ))}
       </div>
     </div>
   );
