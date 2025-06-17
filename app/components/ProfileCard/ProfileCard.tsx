@@ -52,7 +52,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="text-gray-500 hover:text-primary transition-colors"
+              className="text-gray-500 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg p-1"
             >
               {Icon && <Icon className="w-6 h-6" />}
             </a>
