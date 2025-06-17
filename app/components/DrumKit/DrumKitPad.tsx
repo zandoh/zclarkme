@@ -37,14 +37,14 @@ export const DrumKitPad = ({ pad }: DrumKitPadProps) => {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       onBlur={handleBlur}
-      className="flex flex-col items-center space-y-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg p-2"
+      className="flex flex-col items-center space-y-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg p-3 w-full"
       aria-label={`${pad.name} drum pad`}
       role="button"
       tabIndex={0}
     >
-      <div className="w-12 h-12 flex items-center justify-center">
+      <div className="w-14 h-14 md:w-12 md:h-12 flex items-center justify-center">
         <span
-          className={`text-2xl transition-transform duration-75 ${
+          className={`text-3xl md:text-2xl transition-transform duration-75 ${
             isPressed ? "scale-75" : "scale-100"
           }`}
         >
@@ -52,7 +52,7 @@ export const DrumKitPad = ({ pad }: DrumKitPadProps) => {
         </span>
       </div>
       <kbd
-        className={`px-2 py-1 text-xs font-mono rounded-md border transition-colors ${
+        className={`px-3 py-2 text-sm md:text-xs font-mono rounded-md border transition-colors ${
           isPressed
             ? "bg-primary text-primary-foreground"
             : "bg-muted text-muted-foreground"
