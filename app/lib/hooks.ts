@@ -6,7 +6,7 @@ const logger = createLogger({ component: "hooks" });
 export function useKeyPress(
   keyCode: string,
   onKeyDown?: () => void,
-  elementRef?: React.RefObject<HTMLButtonElement>
+  elementRef?: React.RefObject<HTMLButtonElement | null>
 ) {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -45,6 +45,7 @@ export function useKeyPress(
 export function useAudio(soundPath: string) {
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
+  const isInitializedRef = useRef(false);
 
   useEffect(() => {
     const initAudio = async () => {
@@ -59,6 +60,7 @@ export function useAudio(soundPath: string) {
         audioBufferRef.current = await audioContextRef.current.decodeAudioData(
           arrayBuffer
         );
+        isInitializedRef.current = true;
       } catch (error) {
         logger.error("Error loading audio", { error, soundPath });
       }
@@ -73,8 +75,18 @@ export function useAudio(soundPath: string) {
     };
   }, [soundPath]);
 
-  const play = () => {
+  const play = async () => {
     if (!audioContextRef.current || !audioBufferRef.current) return;
+
+    // Resume audio context on mobile if it's suspended
+    if (audioContextRef.current.state === "suspended") {
+      try {
+        await audioContextRef.current.resume();
+      } catch (error) {
+        logger.error("Error resuming audio context", { error });
+        return;
+      }
+    }
 
     const source = audioContextRef.current.createBufferSource();
     source.buffer = audioBufferRef.current;
