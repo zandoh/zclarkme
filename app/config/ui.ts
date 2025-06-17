@@ -55,7 +55,7 @@ export const configData = [
     typename: "ProfileCard",
     name: "Zac Clark",
     title: "Senior Software Engineer",
-    avatarSrc: "/memoji.png",
+    avatarSrc: "/memoji.webp",
     socialLinks: [
       {
         type: "linkedin",
