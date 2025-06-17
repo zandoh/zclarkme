@@ -28,7 +28,7 @@ export const configData = [
       {
         name: "Hi-Hat",
         key: "KeyD",
-        icon: "🔔",
+        icon: "🥢",
         sound: "/sounds/hihat.wav",
       },
       {
