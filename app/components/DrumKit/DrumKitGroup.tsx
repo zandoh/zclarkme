@@ -1,6 +1,6 @@
 import type { z } from "zod";
-import type { DrumPadSchema } from "./schema";
-import { DrumKitPad } from "./DrumKitPad";
+import type { DrumPadSchema } from "~/components/DrumKit/schema";
+import { DrumKitPad } from "~/components/DrumKit/DrumKitPad";
 
 interface DrumKitGroupProps {
   drumPads: z.infer<typeof DrumPadSchema>[];

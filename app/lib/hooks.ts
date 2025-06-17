@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { createLogger } from "./logger";
+import { createLogger } from "~/lib/logger";
 
 const logger = createLogger({ component: "hooks" });
 

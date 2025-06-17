@@ -1,6 +1,6 @@
 import type { DrumKitBlockSchema } from "app/components/DrumKit/schema";
 import type { z } from "zod";
-import { DrumKitGroup } from "./DrumKitGroup";
+import { DrumKitGroup } from "~/components/DrumKit/DrumKitGroup";
 
 interface DrumKitProps {
   block: z.infer<typeof DrumKitBlockSchema>;

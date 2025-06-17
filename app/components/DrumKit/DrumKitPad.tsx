@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import type { DrumPadSchema } from "./schema";
+import type { DrumPadSchema } from "~/components/DrumKit/schema";
 import { useKeyPress, useAudio } from "~/lib/hooks";
 import { useState } from "react";
 
