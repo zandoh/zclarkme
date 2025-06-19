@@ -33,6 +33,6 @@ jobs:
     steps:
       - name: Trigger Coolify Deployment
         run: |
-          curl -X POST "${{ secrets.COOLIFY_URL }}/api/v1/applications/${{ secrets.COOLIFY_APP_ID }}/deploy" \
+          curl -X GET "${{ secrets.COOLIFY_URL }}/api/v1/deploy?uuid=${{ secrets.COOLIFY_APP_ID }}" \
           -H "Authorization: Bearer ${{ secrets.COOLIFY_API_KEY }}" \
           -H "Content-Type: application/json" 
