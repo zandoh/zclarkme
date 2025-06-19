@@ -52,7 +52,7 @@ To build and run using Docker:
 docker build -t my-app .
 
 # Run the container
-docker run -p 3000:3000 my-app
+docker run -p 8080:8080 my-app
 ```
 
 The containerized application can be deployed to any platform that supports Docker, including:
@@ -61,8 +61,18 @@ The containerized application can be deployed to any platform that supports Dock
 - Google Cloud Run
 - Azure Container Apps
 - Digital Ocean App Platform
-- Fly.io
+- Coolify
 - Railway
+
+### Coolify Deployment
+
+This project is configured for automatic deployment to Coolify:
+
+1. GitHub Actions build and push the Docker image to GitHub Container Registry
+2. Coolify automatically deploys the latest image
+3. SSL/TLS and domain management are handled by Coolify
+
+For more details, see the `.github/workflows/docker-publish.yml` file.
 
 ### DIY Deployment
 
