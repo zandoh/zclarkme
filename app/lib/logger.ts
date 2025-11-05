@@ -10,7 +10,7 @@ export interface LogContext {
 
 export type LogMiddleware = (context: LogContext) => LogContext | Promise<LogContext>;
 
-export interface Logger {
+export interface LoggerInterface {
   debug(message: string, data?: unknown): void;
   info(message: string, data?: unknown): void;
   warn(message: string, data?: unknown): void;
@@ -18,7 +18,7 @@ export interface Logger {
   use(middleware: LogMiddleware): void;
 }
 
-class LoggerImpl implements Logger {
+class Logger implements LoggerInterface {
   private middlewares: LogMiddleware[] = [];
 
   constructor(private readonly baseContext: Partial<LogContext> = {}) {}
@@ -91,42 +91,6 @@ class LoggerImpl implements Logger {
   }
 }
 
-// Factory function to create a new logger instance
 export function createLogger(baseContext?: Partial<LogContext>): Logger {
-  return new LoggerImpl(baseContext);
+  return new Logger(baseContext);
 }
-
-// Common middleware examples
-export const requestIdMiddleware: LogMiddleware = (context) => ({
-  ...context,
-  requestId: crypto.randomUUID(),
-});
-
-export const environmentMiddleware: LogMiddleware = (context) => ({
-  ...context,
-  environment: process.env.NODE_ENV,
-});
-
-export const errorStackMiddleware: LogMiddleware = (context) => {
-  if (context.level === "error" && context.data instanceof Error) {
-    return {
-      ...context,
-      stack: context.data.stack,
-    };
-  }
-  return context;
-};
-
-// Example usage:
-/*
-const logger = createLogger({ app: "my-app" });
-
-// Add middleware
-logger.use(requestIdMiddleware);
-logger.use(environmentMiddleware);
-logger.use(errorStackMiddleware);
-
-// Log messages
-logger.info("Application started");
-logger.error("Failed to process request", new Error("Invalid input"));
-*/ 
