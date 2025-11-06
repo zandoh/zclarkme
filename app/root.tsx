@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import type { Route } from "./+types/root";
+import { PostHogProvider } from "posthog-js/react";
 import "~/app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -67,7 +68,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY;
+  const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST;
+
+  if (!posthogKey || !posthogHost) {
+    return <Outlet />;
+  }
+
+  return (
+    <PostHogProvider
+      apiKey={posthogKey}
+      options={{
+        api_host: posthogHost,
+        defaults: "2025-05-24",
+      }}
+    >
+      <Outlet />
+    </PostHogProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
