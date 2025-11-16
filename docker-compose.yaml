@@ -6,17 +6,17 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "80:80"
     environment:
       - NODE_ENV=production
-      - PORT=8080
+      - PORT=80
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
     labels:
       - "coolify.managed=true"
-      - "coolify.exposePort=8080" 
+      - "coolify.exposePort=80" 

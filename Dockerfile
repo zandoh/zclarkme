@@ -30,10 +30,10 @@ RUN npm ci --production
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=80
 
 # Expose the port
-EXPOSE 8080
+EXPOSE 80
 
 # Start the app
 CMD ["npm", "run", "start"]
