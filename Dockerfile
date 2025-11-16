@@ -17,6 +17,9 @@ FROM node:20-slim AS runner
 
 WORKDIR /app
 
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 # Copy built assets from builder
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/package.json ./package.json
